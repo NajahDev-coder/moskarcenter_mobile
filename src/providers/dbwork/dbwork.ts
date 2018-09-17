@@ -52,14 +52,6 @@ export class DbworkProvider {
     return $obs;
   }
 
-  public logout(token: string) {
-    var creds = {
-      token: token
-    };
-    this.http.post(apiUrl +'/rest-auth/logout/', creds, {})
-      .map(res => res.json().success);
-  }
-
   public register(signup: {}) {
     let header = new Headers();
     header.append('Content-Type', 'application/json');
