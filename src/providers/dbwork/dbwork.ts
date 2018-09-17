@@ -30,8 +30,8 @@ export class DbworkProvider {
       let headers = new Headers();
       this.http.post(apiUrl+type, JSON.stringify(credentials), {headers: headers}).
       subscribe(res =>{
-        resolve(res.json());
-        console.log(res.json());
+        resolve(res);
+        console.log(res);
       }, (err) =>{
         reject(err);
       });

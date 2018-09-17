@@ -13,12 +13,12 @@
 
                 <ion-item class="it1">
                   <ion-label floating>Username</ion-label>
-                  <ion-input type="text"></ion-input>
+                  <ion-input type="text" [(ngModel)]="userData.user_login"></ion-input>
                 </ion-item>
               
                 <ion-item class="it1">
                   <ion-label floating>Password</ion-label>
-                  <ion-input type="password"></ion-input>
+                  <ion-input type="password" [(ngModel)]="userData.user_pass"></ion-input>
                 </ion-item>
   
                   </ion-list>
@@ -26,7 +26,7 @@
 
                       <div style="width:100%; height:100%; justify-content: center; flex-direction: column; margin-right:1%;"> 
                           <button ion-button icon-only large color="connect" style="width:100%;;">
-                          <img src="../../assets/imgs/connect.png" style="width:5%;margin-left:-5%;margin-right:6%;">connecter</button><br>
+                          <img src="../../assets/imgs/connect.png" style="width:5%;margin-left:-5%;margin-right:6%;" (click)="login()">connecter</button><br>
                            <button ion-button class="b1" color="dark" clear style="width: 100%;">Mot de Passe Oublié?</button>
                       </div>
 
