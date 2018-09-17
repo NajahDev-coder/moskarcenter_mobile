@@ -23,7 +23,7 @@ export class LoginPage {
 
   onLogin(form) {
     if (form.valid) {
-      this.db.login(this.login)
+      this.db.login(this.login.username, this.login.password)
         .subscribe(
           data => {
             localStorage.setItem('token', data);
