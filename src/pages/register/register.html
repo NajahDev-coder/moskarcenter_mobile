@@ -1,0 +1,51 @@
+<ion-header>
+        <ion-navbar color="inscrire">
+            <img src="../../assets/imgs/bg_general.png" style="  margin: -2207px 0px -1536px 0;">
+           <ion-title style="margin: -10px 0px 1px 66px;">Inscrivez-vous</ion-title>
+           <button ion-button menuToggle right style="  border: 2px solid #ff5c00;border-radius: 12px; margin: 5px 0 0 0; background-color: #b23672">
+              <ion-icon name="menu"></ion-icon>
+            </button>
+          </ion-navbar>
+</ion-header>
+<ion-content>
+        <ion-list>
+
+            <ion-list [(ngModel)]="userData.ct" radio-group>
+
+                <ion-list-header>
+                  Type de Compte
+                </ion-list-header >
+              
+                <ion-item>
+                  <ion-radio checked="true" value="compte particulier"></ion-radio>
+                  <ion-label>Compte Particulier</ion-label>
+                </ion-item>
+              
+                <ion-item>
+                  <ion-radio value="compte professionnel" ></ion-radio>
+                  <ion-label>Compte Professionnel</ion-label>
+                </ion-item>
+
+            </ion-list>
+
+                <ion-item class="it1">
+                  <ion-label floating>Idantifiant</ion-label>
+                  <ion-input type="text" [(ngModel)]="userData.user_login"></ion-input>
+                </ion-item>
+
+                
+                <ion-item class="it1">
+                  <ion-label floating>Adresse e-mail</ion-label>
+                  <ion-input type="email" [(ngModel)]="userData.user_email"></ion-input>
+                </ion-item>
+              
+                <ion-item class="it1">
+                  <ion-label floating>Password</ion-label>
+                  <ion-input type="password" [(ngModel)]="userData.user_pass"></ion-input>
+                </ion-item>
+
+                
+             <button ion-button icon-only large color="connect" style="width:200px; margin-left:80px ; margin-top:26px" (click)="signup()">
+                    <img src="../../assets/imgs/inscription.png" style="max-width:14%;margin-left:-10%;margin-right:6%;">S'Inscrire</button>
+              </ion-list>
+</ion-content>
