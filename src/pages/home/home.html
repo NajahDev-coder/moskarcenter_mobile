@@ -1,18 +1,21 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
+    <ion-navbar color="moskar">
+    <div style="color:white; border-left:1px solid">
+      <ion-select>
+          <ion-option value="euro">EUR</ion-option>
+          <ion-option value="dolar">DOL</ion-option>
+    </ion-select>
+  </div>
+  </ion-navbar>
+  <ion-navbar color="moskar">
+    <button ion-button menuToggle right style="  border: 2px solid #ff5c00;border-radius: 12px; background-color: #232f3e">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+<img src="../../assets/imgs/mc.png">
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <ion-label>{{responsetxt}}</ion-label>
+  <button ion-button (click)="showMe()">read</button>
 </ion-content>
