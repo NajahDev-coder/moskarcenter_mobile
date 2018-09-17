@@ -15,5 +15,7 @@ export class HomePage {
    
    }
 
-  
+  myPage(){
+    this.navCtrl.setRoot(HomePage);
+  }
 }

@@ -1,18 +1,20 @@
 <ion-header>
     <ion-navbar color="moskar">
-    <div style="color:white; border-left:1px solid">
-      <ion-select>
-          <ion-option value="euro">EUR</ion-option>
+    <div style="color:white;" >
+      <ion-select style="width:18%;" right>
+          <ion-option value="euro" selected="true">EUR</ion-option>
           <ion-option value="dolar">DOL</ion-option>
     </ion-select>
   </div>
   </ion-navbar>
   <ion-navbar color="moskar">
+    <div style="text-align: center;border-radius: 50%;width: 38px;line-height: 38px;height: 38px;background: #18bcec;position: absolute;margin-left: 87%; margin-top:3%;"></div>
     <button ion-button menuToggle right style="  border: 2px solid #ff5c00;border-radius: 12px; background-color: #232f3e">
       <ion-icon name="menu"></ion-icon>
     </button>
-<img src="../../assets/imgs/mc.png">
+<button (click)="myPage()" style="background-color: #232f3e;"><img src="../../assets/imgs/mc.png"></button>
   </ion-navbar>
+  
 </ion-header>
 
 <ion-content padding>
