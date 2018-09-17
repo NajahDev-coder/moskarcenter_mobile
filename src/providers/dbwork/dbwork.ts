@@ -42,25 +42,29 @@ export class DbworkProvider {
 
   }
 
-  public login(login: {}): Observable<any> {
+  public login(username, password): Observable<any> {
     let header = new Headers();
     header.append('Content-Type', 'application/json');
-    console.log(login);
-    var $obs = this.http.post(apiUrl +'/wp-json/jwt-auth/v1/token', login)
+    var $obs = this.http.post(apiUrl +'/wp-json/jwt-auth/v1/token', {
+      "username": username,
+      "password": password
+    })
     .map(res => this.getToken(res));
 
     return $obs;
   }
 
-  public register(signup: {}) {
+  public register(email, username, password) : Observable<any>{
     let header = new Headers();
     header.append('Content-Type', 'application/json');
-    console.log('register');
-    console.log(signup);
-    /*var $obs = this.http.post(apiUrl +'/rest-auth/registration/', signup, {})
+    var $obs = this.http.post(apiUrl +'/wp-json/wp/v2/users/register', {
+      "email": email,
+      "username": username,
+      "password": password
+    }, {})
       .map(res => this.getToken(res));
 
-    return $obs;*/
+    return $obs;
   }
 
   public getToken(res) {
