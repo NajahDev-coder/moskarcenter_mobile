@@ -10,17 +10,26 @@
 </ion-header>
 <ion-content>
         <ion-list style="margin-top:10%;">
+          <form #loginForm="ngForm">
+              <ion-item>
+                  <ion-label floating color="primary">Username</ion-label>
+                  <ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off" required>
+                  </ion-input>
+                </ion-item>
+                
+          
+                <ion-item>
+                  <ion-label floating color="primary">Password</ion-label>
+                  <ion-input [(ngModel)]="login.password" name="password" type="password" #password="ngModel" required>
+                  </ion-input>
+                </ion-item>
 
-                <ion-item class="it1">
-                  <ion-label floating>Username</ion-label>
-                  <ion-input type="text"></ion-input>
-                </ion-item>
-              
-                <ion-item class="it1">
-                  <ion-label floating>Password</ion-label>
-                  <ion-input type="password"></ion-input>
-                </ion-item>
-  
+                <button ion-button (click)="onLogin(loginForm)" type="submit" color="primary" block>Login</button>
+                
+          
+          </form>
+
+                
                   </ion-list>
               <div style="display:flex; flex-direction: column; margin-top: 20%; margin-right:1%">  
 

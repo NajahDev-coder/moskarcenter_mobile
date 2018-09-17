@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ToastController  } from 'ionic-angular';
 import { RegisterPage } from '../register/register'
+import { DbworkProvider } from "../../providers/dbwork/dbwork";
+import { HomePage } from '../home/home';
 
 @Component({
   selector: 'page-login',
@@ -8,8 +10,41 @@ import { RegisterPage } from '../register/register'
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController) {
+  login: {
+    "username"?: string,
+    "password"?: string,
+  } = {};
 
+  constructor(public navCtrl: NavController, private db: DbworkProvider, private toastCtrl:ToastController) {
+
+  }
+
+  onLogin(form) {
+    if (form.valid) {
+      this.db.login(this.login)
+        .subscribe(
+          data => {
+            localStorage.setItem('token', data);
+            let toast = this.toastCtrl.create({
+              message : 'Bienvenue! Vous êtes Connecté!',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            this.navCtrl.setRoot(HomePage);
+          },
+          err => {
+            let toast = this.toastCtrl.create({
+              message : "Erreur Lors du Login",
+              duration: 3000,
+              position: 'bottom'
+          });
+          toast.present();
+
+          },
+          () => {}
+        );
+    }
   }
 
   goToRegister(){

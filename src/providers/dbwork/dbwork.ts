@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import {Observable} from 'rxjs';
+import 'rxjs/Rx';
 
 /*
   Generated class for the DbworkProvider provider.
@@ -9,7 +11,7 @@ import { Http, Headers } from '@angular/http';
   and Angular DI.
 */
 
-let apiUrl = 'https://moskarcenter.com/PHP-Slim-Restful/api/index.php/';
+let apiUrl = 'https://moskarcenter.com';
 
 @Injectable()
 export class DbworkProvider {
@@ -39,4 +41,40 @@ export class DbworkProvider {
     });
 
   }
+
+  public login(login: {}): Observable<any> {
+    let header = new Headers();
+    header.append('Content-Type', 'application/json');
+    console.log(login);
+    var $obs = this.http.post(apiUrl +'/wp-json/jwt-auth/v1/token', login)
+    .map(res => this.getToken(res));
+
+    return $obs;
+  }
+
+  public logout(token: string) {
+    var creds = {
+      token: token
+    };
+    this.http.post(apiUrl +'/rest-auth/logout/', creds, {})
+      .map(res => res.json().success);
+  }
+
+  public register(signup: {}) {
+    let header = new Headers();
+    header.append('Content-Type', 'application/json');
+    console.log('register');
+    console.log(signup);
+    /*var $obs = this.http.post(apiUrl +'/rest-auth/registration/', signup, {})
+      .map(res => this.getToken(res));
+
+    return $obs;*/
+  }
+
+  public getToken(res) {
+    return res.json().token;
+  }
+
+
+
 }
