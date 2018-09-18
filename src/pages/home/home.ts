@@ -12,10 +12,19 @@ export class HomePage {
   responsetxt: any;
 
   constructor(public navCtrl: NavController,public db:DbworkProvider) {
-   
-   }
+   this.getCategories();
+  }
 
   myPage(){
     this.navCtrl.setRoot(HomePage);
+  }
+
+  getCategories() {
+    this.db.getCategories()
+      .subscribe(
+        data => console.log(data),
+        err => console.log(err),
+        () => console.log('categories')
+      );
   }
 }

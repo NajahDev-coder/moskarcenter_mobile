@@ -42,6 +42,11 @@ export class DbworkProvider {
 
   }
 
+  public getCategories() {
+    return this.http.get(apiUrl + '/wp-json/wp/v2/categories/', {})
+      .map(res => res.json());
+  }
+
   public login(username, password): Observable<any> {
     let header = new Headers();
     header.append('Content-Type', 'application/json');

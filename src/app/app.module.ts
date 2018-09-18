@@ -13,6 +13,10 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DbworkProvider } from '../providers/dbwork/dbwork';
+import { ValidatePro } from '../pages/validate_pro/validatepro';
+import { ProfilePage } from '../pages/profile/profile';
+import { PaymentPro } from '../pages/payment/payment';
+import { BienvenuePage } from '../pages/bienvenue/bienvenue';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { DbworkProvider } from '../providers/dbwork/dbwork';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ValidatePro,
+    ProfilePage,
+    PaymentPro,
+    BienvenuePage,
   ],
   imports: [
     BrowserModule,HttpClientModule,HttpModule,
@@ -32,7 +40,11 @@ import { DbworkProvider } from '../providers/dbwork/dbwork';
     HomePage,
     ListPage,
     LoginPage,
-    RegisterPage
+    RegisterPage,
+    ValidatePro,
+    ProfilePage,
+    PaymentPro,
+    BienvenuePage,
   ],
   providers: [
     StatusBar,

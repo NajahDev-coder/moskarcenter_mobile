@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController , ToastController } from 'ionic-angular';
 import { DbworkProvider } from "../../providers/dbwork/dbwork";
 import { HomePage } from '../home/home';
+import { ValidatePro } from '../validate_pro/validatepro';
 
 @Component({
   selector: 'page-register',
@@ -23,30 +24,34 @@ export class RegisterPage {
 
   onRegister(form) {
     if (form.valid) {
+      console.log(this.register.typeCompte);
       this.db.register(this.register.user_email, this.register.user_login, this.register.user_pass)
         .subscribe(
           data => {
-            this.db.login(this.register.user_login, this.register.user_pass)
-            .subscribe(
-              data =>  {
-                localStorage.setItem('token', data);
-                this.navCtrl.setRoot(HomePage);
-              },
-              err => {
-                let toast = this.toastCtrl.create({
-                  message : "Erreur Lors de l'enregistrement",
-                  duration: 3000,
-                  position: 'bottom'});
-                  toast.present();
-              }
-            );
-            let toast = this.toastCtrl.create({
-              message : 'Bienvenue! Vous êtes entregisté avec succèes!',
-              duration: 3000,
-              position: 'bottom'
-          });
-          toast.present();
-
+              this.db.login(this.register.user_login, this.register.user_pass)
+              .subscribe(
+                data =>  {
+                  localStorage.setItem('token', data);
+                  if (this.register.typeCompte == "proffesionel") {
+                    this.navCtrl.setRoot(ValidatePro);
+                  } else {
+                    this.navCtrl.setRoot(HomePage);
+                  }
+                },
+                err => {
+                  let toast = this.toastCtrl.create({
+                    message : "Erreur Lors de l'enregistrement",
+                    duration: 3000,
+                    position: 'bottom'});
+                    toast.present();
+                }
+              );
+              let toast = this.toastCtrl.create({
+                message : 'Bienvenue! Vous êtes entregisté avec succèes!',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
           },
           err => {
             let toast = this.toastCtrl.create({

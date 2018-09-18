@@ -7,6 +7,10 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
+import { ValidatePro } from '../pages/validate_pro/validatepro';
+import { ProfilePage } from '../pages/profile/profile';
+import { PaymentPro } from '../pages/payment/payment';
+import { BienvenuePage } from '../pages/bienvenue/bienvenue';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,6 +30,10 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Login', component: LoginPage },
       { title: 'Register', component: RegisterPage},
+      { title: 'Validate Pro', component: ValidatePro },
+      { title: 'Profile', component: ProfilePage },
+      { title: 'Payment Inscri', component: PaymentPro},
+      { title: 'Bienvenue', component: BienvenuePage},
     ];
 
   }

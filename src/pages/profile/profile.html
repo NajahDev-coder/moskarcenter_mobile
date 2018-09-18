@@ -1,0 +1,87 @@
+<ion-header>
+    <ion-navbar color="inscrire">
+        <img src="../../assets/imgs/bg_general.png" style="  margin: -2207px 0px -1536px 0;">
+       <ion-title style="margin: -10px 0px 1px 66px;">Profile</ion-title>
+       <button ion-button menuToggle right style="  border: 2px solid #ff5c00;border-radius: 12px; margin: 5px 0 0 0; background-color: #b23672">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <form #profileForm="ngForm">
+
+            <ion-item>
+                <ion-label floating color="primary">Identifiant</ion-label>
+                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.user_login" name="user_login" type="text" #user_login="ngModel" required></ion-input>
+            </ion-item>
+                    
+            <ion-item>
+                <ion-label floating color="primary">Email</ion-label>
+                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.user_email" name="user_email" type="email" #user_email="ngModel" required></ion-input>
+            </ion-item>
+                 
+          <ion-item>
+              <ion-label floating color="primary">Nom</ion-label>
+              <ion-input [(ngModel)]="profile.first_name" name="first_name" type="text" #first_name="ngModel"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label floating color="primary">Prénom</ion-label>
+            <ion-input [(ngModel)]="profile.last_name" name="last_name" type="text" #last_name="ngModel"></ion-input>
+          </ion-item>
+
+
+          <ion-item>
+                <ion-label floating color="primary">Mon Du Magasin</ion-label>
+                <ion-input [(ngModel)]="profile.magasin" name="magasin" type="text" #magasin="ngModel" required></ion-input>
+            </ion-item>
+                 
+          <ion-item>
+              <ion-label floating color="primary">Adresse 1</ion-label>
+              <ion-input [(ngModel)]="profile.adresse1" name="adresse1" type="text" #adresse1="ngModel" required></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label floating color="primary">Adresse 2</ion-label>
+            <ion-input [(ngModel)]="profile.adresse2" name="adresse2" type="text" #adresse2="ngModel"></ion-input>
+          </ion-item>
+
+          <ion-item>
+                <ion-label floating color="primary">Pays</ion-label>
+                <ion-input [(ngModel)]="profile.pays" name="pays" type="text" #pays="ngModel" required></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label floating color="primary">Code Postale</ion-label>
+              <ion-input [(ngModel)]="profile.postcode" name="postcode" type="text" #postcode="ngModel" required></ion-input>
+            </ion-item>
+  
+  
+            <ion-item>
+                  <ion-label floating color="primary">Ville/Localité</ion-label>
+                  <ion-input [(ngModel)]="profile.ville" name="ville" type="text" #ville="ngModel"></ion-input>
+              </ion-item>
+                   
+            <ion-item>
+                <ion-label floating color="primary">État/Pays</ion-label>
+                <ion-input [(ngModel)]="profile.etat" name="etat" type="text" #etat="ngModel"></ion-input>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label floating color="primary">Téléphone de l'entreprise</ion-label>
+              <ion-input [(ngModel)]="profile.phone" name="phone" type="text" #phone="ngModel" required></ion-input>
+            </ion-item>
+              
+            <ion-item>
+                <ion-label floating color="primary">SIRET</ion-label>
+                <ion-input [(ngModel)]="profile.siret" name="siret" type="text" #siret="ngModel" required></ion-input>
+            </ion-item>
+         
+          <div>
+              <button ion-button (click)="onSave(profileForm)" style="width:88%; margin-top: 11%; margin-left:6%;" color="connect" large>Confirmez</button>
+              <!--<img src="../../assets/imgs/inscription.png" style="max-width:14%;margin-left:-10%;margin-right:6%;">S'Inscrire</button>-->
+          </div>
+        </form>
+      </ion-list>
+</ion-content>
