@@ -13,12 +13,12 @@
 
             <ion-item>
                 <ion-label floating color="primary">Identifiant</ion-label>
-                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.user_login" name="user_login" type="text" #user_login="ngModel" required></ion-input>
+                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.username" name="username" type="text" #username="ngModel" required></ion-input>
             </ion-item>
                     
             <ion-item>
                 <ion-label floating color="primary">Email</ion-label>
-                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.user_email" name="user_email" type="email" #user_email="ngModel" required></ion-input>
+                <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.email" name="email" type="email" #email="ngModel" required></ion-input>
             </ion-item>
                  
           <ion-item>

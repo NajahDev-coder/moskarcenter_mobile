@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ValidatePro } from '../pages/validate_pro/validatepro';
@@ -54,7 +53,7 @@ export class MyApp {
   }
 
   loggedIn() {
-    if (localStorage.getItem('token')) {
+    if (localStorage.getItem('ID')) {
       return true;
     } else {
       return false;
@@ -63,7 +62,9 @@ export class MyApp {
 
   logout() {
     this.menu.close();
-    localStorage.removeItem('token');
+    localStorage.removeItem('cookie');
+    localStorage.removeItem('ID');
+    localStorage.removeItem('nonce');
     this.nav.setRoot(LoginPage);
 
   }

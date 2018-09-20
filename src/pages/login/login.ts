@@ -26,14 +26,25 @@ export class LoginPage {
       this.db.login(this.login.username, this.login.password)
         .subscribe(
           data => {
-            localStorage.setItem('token', data);
-            let toast = this.toastCtrl.create({
-              message : 'Bienvenue! Vous êtes Connecté!',
-              duration: 3000,
-              position: 'bottom'
-            });
-            toast.present();
-            this.navCtrl.setRoot(HomePage);
+            if (data.json().status == 'ok') {
+              localStorage.setItem('cookie', data.json().cookie);
+              localStorage.setItem('ID', data.json().user.id);
+            
+              let toast = this.toastCtrl.create({
+                message : 'Bienvenue! Vous êtes Connecté!',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+              this.navCtrl.setRoot(HomePage);
+            } else {
+              let toast = this.toastCtrl.create({
+                message : data.json().error,
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+            }
           },
           err => {
             let toast = this.toastCtrl.create({

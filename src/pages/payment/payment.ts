@@ -15,23 +15,35 @@ export class PaymentPro {
     facture: {
         first_name?: string,
         last_name?: string,
-        magasin?: string,
-        pays?: string,
-        adresse1?: string,
-        ville?: string,
-        etat?: string,
+        company?: string,
+        country?: string,
+        address_1?: string,
+        city?: string,
+        state?: string,
         postcode?: string,
         phone?: string,
-        user_email?: string,
+        email?: string,
     } = {};
 
     constructor(public navCtrl: NavController , public db : DbworkProvider, private toastCtrl:ToastController) {
+        this.loadBillingData();
+    }
 
+    loadBillingData() {
+        this.db.getBillingData()
+        .subscribe(
+            data => {
+                this.facture = data;
+            },
+            err => console.log(err),
+            () => console.log('loading billing data')
+        );
     }
 
     onSave(form) {
-        console.log('adresse facturation validé');
-        this.navCtrl.setRoot(BienvenuePage);
+        if (form.valid) {
+            this.navCtrl.setRoot(BienvenuePage);
+        }
     }
 
 }

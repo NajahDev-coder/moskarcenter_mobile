@@ -25,27 +25,27 @@
             
                       <ion-item>
                             <ion-label floating color="primary">Mon De l'entreprise (facultatif)</ion-label>
-                            <ion-input [(ngModel)]="facture.magasin" name="magasin" type="text" #magasin="ngModel"></ion-input>
+                            <ion-input [(ngModel)]="facture.company" name="company" type="text" #company="ngModel"></ion-input>
                         </ion-item>
 
                         <ion-item>
                                 <ion-label floating color="primary">Pays</ion-label>
-                                <ion-input [(ngModel)]="facture.pays" name="pays" type="text" #pays="ngModel" required></ion-input>
+                                <ion-input [(ngModel)]="facture.country" name="country" type="text" #country="ngModel" required></ion-input>
                             </ion-item>
                              
                       <ion-item>
                           <ion-label floating color="primary">Numéro et Nom de Rue</ion-label>
-                          <ion-input [(ngModel)]="facture.adresse1" name="adresse1" type="text" #adresse1="ngModel" required></ion-input>
+                          <ion-input [(ngModel)]="facture.address_1" name="address_1" type="text" #address_1="ngModel" required></ion-input>
                       </ion-item>
 
                       <ion-item>
                             <ion-label floating color="primary">Ville/Localité</ion-label>
-                            <ion-input [(ngModel)]="facture.ville" name="ville" type="text" #ville="ngModel"></ion-input>
+                            <ion-input [(ngModel)]="facture.city" name="city" type="text" #city="ngModel"></ion-input>
                         </ion-item>
                              
                       <ion-item>
                           <ion-label floating color="primary">État/Pays</ion-label>
-                          <ion-input [(ngModel)]="facture.etat" name="etat" type="text" #etat="ngModel"></ion-input>
+                          <ion-input [(ngModel)]="facture.state" name="state" type="text" #state="ngModel"></ion-input>
                       </ion-item>
                       
                         <ion-item>
@@ -60,7 +60,7 @@
                           
                         <ion-item>
                             <ion-label floating color="primary">Email</ion-label>
-                            <ion-input [(ngModel)]="facture.user_email" name="user_email" type="email" #user_email="ngModel" required></ion-input>
+                            <ion-input [(ngModel)]="facture.email" name="email" type="email" #email="ngModel" required></ion-input>
                         </ion-item>
                      
                       <div>

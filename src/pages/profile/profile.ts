@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController , ToastController } from 'ionic-angular';
 import { DbworkProvider } from "../../providers/dbwork/dbwork";
-import { HomePage } from '../home/home';
 import { PaymentPro } from '../payment/payment';
 
 
@@ -15,8 +14,8 @@ export class ProfilePage {
     isReadonly = true;
 
     profile: {
-        user_email?: string,
-        user_login?: string,
+        email?: string,
+        username?: string,
         first_name?: string,
         last_name?: string,
         magasin?: string,
@@ -35,12 +34,35 @@ export class ProfilePage {
     }
 
     loadProfileData() {
-        console.log('load profile data here')
+       this.db.getProfileData()
+        .subscribe(
+            data => {
+                this.profile = data.json();
+                let billingData = data.json().billing;
+                this.profile.magasin = billingData.company;
+                this.profile.adresse1 = billingData.address_1;
+                this.profile.adresse2 = billingData.address_2;
+                this.profile.pays = billingData.country;
+                this.profile.postcode = billingData.postcode;
+                this.profile.ville = billingData.city;
+                this.profile.etat = billingData.state;
+                this.profile.phone = billingData.phone;
+            },
+            err => console.log(err),
+            () => console.log('loading profile data')
+        );
     }
 
     onSave(form) {
-        console.log('You are on save here');
-        this.navCtrl.setRoot(PaymentPro);
+        if (form.valid) {
+            this.db.editProfile(this.profile)
+            .subscribe(
+                data => console.log(data),
+                err => console.log(err),
+                () => {console.log('Profile save')}
+            );
+            this.navCtrl.setRoot(PaymentPro);
+        }
     }
 
 }
