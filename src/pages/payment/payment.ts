@@ -11,6 +11,7 @@ import { BienvenuePage } from '../bienvenue/bienvenue';
   })
 
 export class PaymentPro {
+    countries: any;
 
     facture: {
         first_name?: string,
@@ -26,8 +27,29 @@ export class PaymentPro {
     } = {};
 
     constructor(public navCtrl: NavController , public db : DbworkProvider, private toastCtrl:ToastController) {
+        this.loadCountries();
         this.loadBillingData();
     }
+
+    is_mayotte(pays){
+        if (pays == 'Mayotte'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    loadCountries() {
+        this.db.getCountries()
+        .subscribe(
+            data => {
+                this.countries = data;
+            },
+            err => console.log(err),
+            () => console.log('countries are here')
+        );
+    }
+
 
     loadBillingData() {
         this.db.getBillingData()
@@ -42,6 +64,12 @@ export class PaymentPro {
 
     onSave(form) {
         if (form.valid) {
+            let toast = this.toastCtrl.create({
+                message : 'Données Sauvegardées Correctement',
+                duration: 3000,
+                position: 'bottom'
+              });
+            toast.present();
             this.navCtrl.setRoot(BienvenuePage);
         }
     }

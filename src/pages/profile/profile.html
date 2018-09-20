@@ -49,7 +49,9 @@
 
           <ion-item>
                 <ion-label floating color="primary">Pays</ion-label>
-                <ion-input [(ngModel)]="profile.pays" name="pays" type="text" #pays="ngModel" required></ion-input>
+                <ion-select [(ngModel)]="profile.pays" name="pays" #pays="ngModel">
+                    <ion-option  *ngFor="let c of countries" value={{c.name}} [selected]="is_mayotte(c.name)">{{c.name}}</ion-option>
+                </ion-select>
             </ion-item>
             
             <ion-item>

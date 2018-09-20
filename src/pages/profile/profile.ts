@@ -12,6 +12,7 @@ import { PaymentPro } from '../payment/payment';
 
 export class ProfilePage {
     isReadonly = true;
+    countries : any;
 
     profile: {
         email?: string,
@@ -30,7 +31,27 @@ export class ProfilePage {
     } = {};
 
     constructor(public navCtrl: NavController , public db : DbworkProvider, private toastCtrl:ToastController) {
+        this.loadCountries();
         this.loadProfileData();
+    }
+
+    is_mayotte(pays){
+        if (pays == 'Mayotte'){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    loadCountries() {
+        this.db.getCountries()
+        .subscribe(
+            data => {
+                this.countries = data;
+            },
+            err => console.log(err),
+            () => console.log('countries are here')
+        );
     }
 
     loadProfileData() {
@@ -48,8 +69,7 @@ export class ProfilePage {
                 this.profile.etat = billingData.state;
                 this.profile.phone = billingData.phone;
             },
-            err => console.log(err),
-            () => console.log('loading profile data')
+            err => console.log(err)
         );
     }
 
@@ -61,6 +81,12 @@ export class ProfilePage {
                 err => console.log(err),
                 () => {console.log('Profile save')}
             );
+            let toast = this.toastCtrl.create({
+                message : 'Données Sauvegardées Correctement',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
             this.navCtrl.setRoot(PaymentPro);
         }
     }

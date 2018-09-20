@@ -111,4 +111,12 @@ export class DbworkProvider {
 
     return $obs;
   }
+
+  public getCountries(): Observable<any> {
+    var $obs = this.http.get("https://restcountries.eu/rest/v2/all")
+      .map(res => {
+        return res.json();
+      });
+    return $obs;
+  }
 }

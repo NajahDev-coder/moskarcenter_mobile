@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController , ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { DbworkProvider } from "../../providers/dbwork/dbwork";
 
 
@@ -11,7 +11,7 @@ import { DbworkProvider } from "../../providers/dbwork/dbwork";
 
 export class BienvenuePage {
 
-    constructor(public navCtrl: NavController , public db : DbworkProvider, private toastCtrl:ToastController) {
+    constructor(public navCtrl: NavController , public db : DbworkProvider) {
 
     }
 

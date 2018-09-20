@@ -8,5 +8,31 @@
       </ion-navbar>
 </ion-header>
 <ion-content>
-    <button ion-button (click)="onValidate()">Valider le paiment de 'montant' Euro</button>
+    <ion-row style="margin-top:5%">
+        <ion-col col-11 style="text-align: center;margin: auto;border: 1px solid crimson;"> 
+            <ion-row style="background-color: #b23672; border-bottom: 1px; color: white; margin-bottom: 5%">Vous êtes sur le point de créer un compte professionel</ion-row>
+            <ion-row style="color: #b23672;margin-bottom: 5%">
+                <ion-col text-center>Compte Professionel</ion-col>
+            </ion-row>
+           
+             <ion-row style="background-color: #b23672; border-bottom: 1px; color: white;">
+                <ion-col text-center>
+                    <div class="circle">29,00€</div>
+                </ion-col>
+            </ion-row><br>
+            <ion-row style="background-color: #b23672; color:black">
+                    <ion-col text-center>
+                        Chaque 1 mois
+                    </ion-col>
+            </ion-row><br>
+            <ion-row  style="background-color: #b23672; border-bottom: 1px; color: white;">
+                Un Compte Professionel est un Compte qui regroupe tous, 
+                le membre peut ajouter des produits sans limite et aussi peut être un 
+                client qui passe des commandes sur MoskarCenter.
+            </ion-row>
+            
+            <button ion-button (click)="onValidate()" style="margin-top: 5%; margin-bottom: 5%">Valider Votre Choix</button>
+        </ion-col>
+    </ion-row>
+    
 </ion-content>
