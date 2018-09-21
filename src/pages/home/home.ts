@@ -9,21 +9,40 @@ import { DbworkProvider } from '../../providers/dbwork/dbwork';
 export class HomePage {
 
   responsetxt: any;
+  products: any;
+  myInput?: string;
 
   constructor(public navCtrl: NavController,public db:DbworkProvider) {
-   this.getCategories();
+   this.getAllProducts();
   }
 
-  myPage(){
-    this.navCtrl.setRoot(HomePage);
+  maBoutique() {
+    
   }
 
-  getCategories() {
-    this.db.getCategories()
+  mesAchats() {
+
+  }
+
+  onSearch(event) {
+    console.log(this.myInput);
+    // search the input in  fields of products + categories 
+  }
+
+  notifications () {
+    console.log('notification');
+  }
+
+  basket () {
+    console.log('basket');
+  }
+
+  getAllProducts() {
+    this.db.getAllProducts()
       .subscribe(
-        data => console.log(data),
+        data => this.products = data,
         err => console.log(err),
-        () => console.log('categories')
+        () => console.log('products')
       );
   }
 }

@@ -20,6 +20,22 @@ export class DbworkProvider {
     console.log('Hello DbworkProvider Provider');
   }
 
+  public getArticles() {
+
+  }
+
+  public getProducts() {
+    return this.http.get(this.apiUrl + '/wp-json/wc/v2/products/?consumer_key='
+    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {})
+      .map(res => res.json());
+  }
+
+  public getOrders() {
+    return this.http.get(this.apiUrl + '/wp-json/wc/v2/orders/?consumer_key='
+    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {})
+      .map(res => res.json());
+  }
+
   public send_payment() {
     return this.http.get(this.lemonWayApi)
       .map(res => res.json());
@@ -27,6 +43,11 @@ export class DbworkProvider {
 
   public getCategories() {
     return this.http.get(this.apiUrl + '/wp-json/wp/v2/categories/', {})
+      .map(res => res.json());
+  }
+
+  public getAllProducts() {
+    return this.http.get(this.apiUrl + '/wp-json/wp/v2/posts/?post_type=product', {})
       .map(res => res.json());
   }
 

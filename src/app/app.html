@@ -1,10 +1,33 @@
 <ion-menu [content]="content">
   <ion-content>
     <ion-list style="background-color:darkblue">
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-      <button ion-item *ngIf=loggedIn() (click)=logout()>Logout</button>
+        <button menuClose ion-item (click)="home()"><ion-icon name="home"></ion-icon> Accueil</button>
+        <div *ngIf="loggedIn()">
+          <button menuClose ion-item (click)="notifications()"><ion-icon name="notifications-outline"></ion-icon> Notifications</button>
+          <button menuClose ion-item (click)="messages()"><ion-icon name="mail"></ion-icon> Messages</button>
+
+          <button menuClose ion-item>Ma Boutique</button>
+          <button menuClose ion-item (click)="articles()"><ion-icon name="logo-codepen"></ion-icon> Articles</button>
+          <button menuClose ion-item (click)="produits()">Produits</button>
+          <button menuClose ion-item (click)="commandes()"><ion-icon name="cart"></ion-icon> Commandes</button>
+          <button menuClose ion-item><ion-icon name="cash"></ion-icon> Paiments</button>
+          <button menuClose ion-item><ion-icon name="settings"></ion-icon> Réglages</button>
+          <button menuClose ion-item>Favoris</button>
+        </div>
+
+        <!--<button menuClose ion-item *ngFor="let c of categories">
+            {{c.name}}
+        </button>-->
+
+        <button menuClose ion-item *ngIf="loggedIn() == false" (click)="login()">Login</button>
+        <button menuClose ion-item *ngIf="loggedIn() == false" (click)="register()">Register</button>
+
+        <div *ngIf="loggedIn()">
+          <button menuClose ion-item *ngIf="loggedIn()" (click)="profile()">Profile</button>
+          <button menuClose ion-item *ngIf="loggedIn()" (click)="logout()">Logout</button>
+        </div>
+
+        
     </ion-list>
   </ion-content>
 

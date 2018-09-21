@@ -5,11 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import { RegisterPage } from '../pages/register/register';
-import { ValidatePro } from '../pages/validate_pro/validatepro';
+import {DbworkProvider} from '../providers/dbwork/dbwork';
 import { ProfilePage } from '../pages/profile/profile';
-import { PaymentPro } from '../pages/payment/payment';
-import { BienvenuePage } from '../pages/bienvenue/bienvenue';
+import { RegisterPage } from '../pages/register/register';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,21 +18,11 @@ export class MyApp {
   rootPage: any = HomePage;
 
   pages: Array<{title: string, component: any}>;
+  categories: Array<{id: string}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
+  constructor(public platform: Platform, private db: DbworkProvider, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Login', component: LoginPage },
-      { title: 'Register', component: RegisterPage},
-      { title: 'Validate Pro', component: ValidatePro },
-      { title: 'Profile', component: ProfilePage },
-      { title: 'Payment Inscri', component: PaymentPro},
-      { title: 'Bienvenue', component: BienvenuePage},
-    ];
-
+    this.getCategories();   
   }
 
   initializeApp() {
@@ -46,10 +34,60 @@ export class MyApp {
     });
   }
 
+  getCategories() {
+    this.db.getCategories()
+      .subscribe(
+        data => this.categories = data,
+        err => console.log(err),
+        () => console.log('categories')
+      );
+  }
+
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page);
+  }
+
+  
+  notifications() {
+
+  }
+
+  messages () {
+
+  }
+
+  articles () {
+
+  }
+
+  produits() {
+
+  }
+
+  commandes() {
+
+  }
+
+  clients() {
+    
+  }
+
+  home () {
+    this.openPage(HomePage);
+  }
+
+  login() {
+    this.openPage(LoginPage);
+  }
+
+  register() {
+    this.openPage(RegisterPage);
+  }
+
+  profile() {
+    this.openPage(ProfilePage);
   }
 
   loggedIn() {
@@ -65,7 +103,7 @@ export class MyApp {
     localStorage.removeItem('cookie');
     localStorage.removeItem('ID');
     localStorage.removeItem('nonce');
-    this.nav.setRoot(LoginPage);
+    this.openPage(LoginPage);
 
   }
 }
