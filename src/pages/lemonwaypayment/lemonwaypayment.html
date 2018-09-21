@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar color="inscrire">
+        <img src="../../assets/imgs/bg_general.png" style="  margin: -2207px 0px -1536px 0;">
+        <ion-title style="margin: -10px 0px 1px 66px;">Valider Vote Inscritpion</ion-title>
+        <button ion-button menuToggle right style="  border: 2px solid #ff5c00;border-radius: 12px; margin: 5px 0 0 0; background-color: #b23672">
+            <ion-icon name="menu"></ion-icon>
+        </button>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <form #paymentForm="ngForm">
+            <ion-item>29,00 €</ion-item>
+            
+            <ion-item>
+                <ion-label floating color="primary">Identifiant commerçant</ion-label>
+                <ion-input readonly="{{isReadonly}}"></ion-input>
+            </ion-item>
+                        
+            <ion-item>
+                <ion-label floating color="primary">Référence de la transaction</ion-label>
+                <ion-input readonly="{{isReadonly}}"></ion-input>
+            </ion-item>
+                     
+            <ion-item>
+                <ion-label floating color="primary">N° de carte</ion-label>
+                <ion-input [(ngModel)]="payment.n_carte" name="n_carte" type="text" #n_carte="ngModel" required></ion-input>
+            </ion-item>
+    
+            <ion-item>
+                <ion-label floating color="primary">Expire fin</ion-label>
+                <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="payment.expire_date" name="expire_date"  #expire_date="ngModel" required></ion-datetime>
+            </ion-item>
+                     
+            <ion-item>
+                <ion-label floating color="primary">CVC</ion-label>
+                <ion-input [(ngModel)]="payment.cvc" name="cvc" type="text" #cvc="ngModel" required></ion-input>
+            </ion-item>
+
+            <div>
+                <button ion-button (click)="savePayment(paymentForm)" style="width:88%; margin-top: 11%; margin-left:6%;" color="connect" large>Valider</button>
+            </div>
+        </form>
+    </ion-list>
+</ion-content>

@@ -9,7 +9,7 @@
     </ion-header>
     <ion-content>
             <ion-list>
-                    Détails de facturation
+                    <ion-item>Détails de facturation </ion-item>
                     <form #factureForm="ngForm">
                                          
                       <ion-item>
@@ -65,7 +65,9 @@
                             <ion-input [(ngModel)]="facture.email" name="email" type="email" #email="ngModel" required></ion-input>
                         </ion-item>
 
-                        
+                        <ion-item>
+                            29,00€ /1 mois
+                        </ion-item>
                      
                       <div>
                           <button ion-button (click)="onSave(factureForm)" style="width:88%; margin-top: 11%; margin-left:6%;" color="connect" large>Passez Votre Abonnement</button>

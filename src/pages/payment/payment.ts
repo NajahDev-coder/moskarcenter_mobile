@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController , ToastController } from 'ionic-angular';
 import { DbworkProvider } from "../../providers/dbwork/dbwork";
-import { BienvenuePage } from '../bienvenue/bienvenue';
+import { PaymentModePage } from '../paymentmode/paymentmode';
 
 
 
@@ -70,7 +70,8 @@ export class PaymentPro {
                 position: 'bottom'
               });
             toast.present();
-            this.navCtrl.setRoot(BienvenuePage);
+            ///window.open("https://sandbox-webkit.lemonway.fr/lwecommerce/dev/?moneyintoken=180526106nrukbu7UCxQgHMbb0FZgFTgho",'_system', 'location=yes');
+            this.navCtrl.setRoot(PaymentModePage);
         }
     }
 

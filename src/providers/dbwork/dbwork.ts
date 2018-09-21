@@ -14,11 +14,15 @@ export class DbworkProvider {
   apiUrl = 'https://moskarcenter.com';
   consumerKey = "ck_dcd2ac836a21068e5c645566390a70400e2a27df";
   consumerSecret = "cs_d65486c616067d1019eaf647667b10bfd1fe2225";
-  
-
- 
+  lemonWayApi = 'https://sandbox-api.lemonway.fr/mb/lwcollect/dev/collect_json/service_json.asmx'
+   
   constructor(public http: Http) {
     console.log('Hello DbworkProvider Provider');
+  }
+
+  public send_payment() {
+    return this.http.get(this.lemonWayApi)
+      .map(res => res.json());
   }
 
   public getCategories() {

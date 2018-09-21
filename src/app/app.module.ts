@@ -17,6 +17,8 @@ import { ValidatePro } from '../pages/validate_pro/validatepro';
 import { ProfilePage } from '../pages/profile/profile';
 import { PaymentPro } from '../pages/payment/payment';
 import { BienvenuePage } from '../pages/bienvenue/bienvenue';
+import { PaymentModePage } from '../pages/paymentmode/paymentmode';
+import { LemonWayPaymentPage } from '../pages/lemonwaypayment/lemonwaypayments';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { BienvenuePage } from '../pages/bienvenue/bienvenue';
     ProfilePage,
     PaymentPro,
     BienvenuePage,
+    PaymentModePage,
+    LemonWayPaymentPage,
   ],
   imports: [
     BrowserModule,HttpClientModule,HttpModule,
@@ -45,6 +49,8 @@ import { BienvenuePage } from '../pages/bienvenue/bienvenue';
     ProfilePage,
     PaymentPro,
     BienvenuePage,
+    PaymentModePage,
+    LemonWayPaymentPage,
   ],
   providers: [
     StatusBar,
