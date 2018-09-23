@@ -6,8 +6,9 @@
   "type": "ionic-angular",
   "proxies": [
     {
-      "path":"/api",
+      "path": "/api",
       "proxyUrl": "https://moskarcenter.com/api"
     }
-  ]
+  ],
+  "app_id": ""
 }

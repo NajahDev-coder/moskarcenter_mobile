@@ -5,9 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
-import {DbworkProvider} from '../providers/dbwork/dbwork';
+import { DbworkProvider } from '../providers/dbwork/dbwork';
 import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,9 +21,9 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
   categories: Array<{id: string}>;
 
-  constructor(public platform: Platform, private db: DbworkProvider, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
+  constructor(public platform: Platform, public storage: Storage, private db: DbworkProvider, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
     this.initializeApp();
-    this.getCategories();   
+    // this.getCategories();
   }
 
   initializeApp() {
@@ -49,7 +50,7 @@ export class MyApp {
     this.nav.setRoot(page);
   }
 
-  
+
   notifications() {
 
   }
@@ -71,7 +72,7 @@ export class MyApp {
   }
 
   clients() {
-    
+
   }
 
   home () {
@@ -91,11 +92,7 @@ export class MyApp {
   }
 
   loggedIn() {
-    if (localStorage.getItem('ID')) {
-      return true;
-    } else {
-      return false;
-    }
+    return true;
   }
 
   logout() {

@@ -21,13 +21,21 @@
       </ion-grid>
     </ion-buttons>
   </ion-navbar>
+
+  <ion-searchbar style="background-color:#232f3e"
+                 [(ngModel)]="searchQuery"
+                 (ionInput)="onSearch($event)">
+  </ion-searchbar>
 </ion-header>
 
 <ion-content padding>
 
   <ion-list>
-    <ion-row *ngFor="let product of products" >
-      <h2> {{ product.name }} </h2>
+    <ion-row *ngFor="let category of categories" >
+      <ion-thumbnail item-left>
+        <!--<img [src]="category.image.src" />-->
+      </ion-thumbnail>
+      <h2> {{ category.name }} </h2>
     </ion-row>
   </ion-list>
 

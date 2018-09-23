@@ -5,24 +5,24 @@ import { Storage } from '@ionic/storage';
 import {WoocommerceProvider} from "../../../providers/woocommerce/woocommerce";
 
 @Component({
-  selector: 'page-products',
-  templateUrl: 'products.html'
+  selector: 'page-commandes',
+  templateUrl: 'commandes.html'
 })
-export class ProductsPage {
+export class CommandesPage {
   WooCommerce: any;
-  products: any[];
+  orders: any[];
 
   constructor(public navCtrl: NavController, public storage: Storage,
               private db: DbworkProvider, private toastCtrl:ToastController,
               public events: Events, private WP: WoocommerceProvider) {
-    this.getProducts();
+    this.getCommandes();
   }
 
-  getProducts() {
+  getCommandes() {
     this.WooCommerce = this.WP.init();
-    this.WooCommerce.getAsync("products").then( (data) => {
-      this.products = JSON.parse(data.body);
-      console.log(this.products);
+    this.WooCommerce.getAsync("orders").then( (data) => {
+      this.orders = JSON.parse(data.body);
+      console.log(this.orders);
     }, (err) => {
       console.log(err.message);
     });

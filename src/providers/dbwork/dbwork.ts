@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import {Observable} from 'rxjs';
 import 'rxjs/Rx';
+import {ToastController} from "ionic-angular";
+import { Storage } from '@ionic/storage';
+import { WoocommerceProvider } from "../woocommerce/woocommerce";
 /*
   Generated class for the DbworkProvider provider.
 
@@ -15,8 +18,8 @@ export class DbworkProvider {
   consumerKey = "ck_dcd2ac836a21068e5c645566390a70400e2a27df";
   consumerSecret = "cs_d65486c616067d1019eaf647667b10bfd1fe2225";
   lemonWayApi = 'https://sandbox-api.lemonway.fr/mb/lwcollect/dev/collect_json/service_json.asmx'
-   
-  constructor(public http: Http) {
+
+  constructor(public http: Http, public toastCtrl: ToastController, public storage: Storage, private WP: WoocommerceProvider) {
     console.log('Hello DbworkProvider Provider');
   }
 
@@ -46,20 +49,28 @@ export class DbworkProvider {
       .map(res => res.json());
   }
 
-  public getAllProducts() {
-    return this.http.get(this.apiUrl + '/wp-json/wp/v2/posts/?post_type=product', {})
-      .map(res => res.json());
-  }
+  public login(username, password){
+    this.http.get(this.apiUrl+'/api/auth/generate_auth_cookie/?username='+username+'&password='+password+'&insecure=cool')
+    .subscribe (res => {
+      console.log(res.json);
+      let response = res.json();
 
-  public login(username, password): Observable<any> {
-    let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    var $obs = this.http.post(this.apiUrl+'/api/auth/generate_auth_cookie/?username='+username+'&password='+password+'&insecure=cool',
-     {headers: header})
-    .map(res => {
-      return res;
+      if(response.error) {
+        this.toastCtrl.create({
+          message: response.error,
+          duration: 5000
+        }).present();
+        return;
+      }
+
+      this.storage.set("userLoginInfo", response).then( data => {
+        this.toastCtrl.create({
+          message : 'Bienvenue! Vous êtes Connecté!',
+          duration: 3000,
+          position: 'bottom'
+        }).present();
+      });
     });
-    return $obs;
   }
 
   public register(email, username, password) : Observable<any>{
