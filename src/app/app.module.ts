@@ -24,6 +24,7 @@ import {CategoriesPage} from "../pages/categories/categories";
 import {ProductDetailsPage} from "../pages/products/details/details";
 import {CommandesPage} from "../pages/commandes/list/commandes";
 import {ProductsPage} from "../pages/products/list/products";
+import { AddProductPage } from '../pages/products/add/addProduct';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import {ProductsPage} from "../pages/products/list/products";
     ProductDetailsPage,
     CommandesPage,
     ProductsPage,
+    AddProductPage,
   ],
   imports: [
     BrowserModule,HttpClientModule,HttpModule,
@@ -63,6 +65,7 @@ import {ProductsPage} from "../pages/products/list/products";
     ProductDetailsPage,
     CommandesPage,
     ProductsPage,
+    AddProductPage,
   ],
   providers: [
     StatusBar,

@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import {NavController, Slides, ToastController} from 'ionic-angular';
 import { DbworkProvider } from '../../providers/dbwork/dbwork';
 import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
-import {CategoriesPage} from "../categories/categories";
+import { ProductDetailsPage } from '../products/details/details';
 
 @Component({
   selector: 'page-home',
@@ -18,19 +18,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,public toastCtrl: ToastController,
               public db:DbworkProvider, private WP: WoocommerceProvider,) {
-   this.getSlideProducts();
-  }
-
-  maBoutique() {
-
-  }
-
-  mesAchats() {
-
-  }
-
-  getCategories() {
-    this.navCtrl.setRoot(CategoriesPage);
+                this.WooCommerce = this.WP.init();
+                this.getSlideProducts();
   }
 
   notifications () {
@@ -43,9 +32,6 @@ export class HomePage {
 
   getSlideProducts() {
     this.page = 2;
-
-    this.WooCommerce = this.WP.init();
-
     this.loadMoreProducts(null);
 
     this.WooCommerce.getAsync("products").then( (data) => {
@@ -92,13 +78,12 @@ export class HomePage {
 
 
   openProductPage(product){
-    // this.navCtrl.push('ProductDetails', {"product": product} );
-    console.log(product.title);
+    this.navCtrl.push(ProductDetailsPage, {"product": product} );
   }
 
   onSearch(event){
     if(this.searchQuery.length > 0){
-      this.navCtrl.push('SearchPage', {"searchQuery": this.searchQuery});
+      //this.navCtrl.push('SearchPage', {"searchQuery": this.searchQuery});
     }
   }
 }

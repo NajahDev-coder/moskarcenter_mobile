@@ -33,5 +33,21 @@
 
 </ion-menu>
 
+<ion-footer>
+    <ion-toolbar text-center="" color="light">
+      <ion-buttons>
+        <button ion-button (click)="getCategories()">
+          <ion-icon name="ios-bookmark-outline">categories</ion-icon>
+        </button>
+        <button ion-button (click)="maBoutique()">
+          <ion-icon name="ios-chatboxes">Boutique</ion-icon>
+        </button>
+        <button ion-button (click)="mesAchats()">
+          <ion-icon name="star-outline">Mes Achats</ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-footer>
+
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

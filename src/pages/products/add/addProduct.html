@@ -1,0 +1,63 @@
+<ion-header>
+        <ion-navbar color="moskar">
+          <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+          <ion-title>
+            <img alt="logo" height="25" style="margin: 10px 0 5px -13px;" src="../../assets/imgs/logo-moskarcenter.png" >
+          </ion-title>
+          <ion-buttons end>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <button (click)="notifications()" style="background-color: transparent; font-size: 20px; color: aliceblue">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button (click)="basket()" style="background-color: transparent; font-size: 20px; color: aliceblue">
+                    <ion-icon name="cart"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-buttons>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content>
+            <form #productForm="ngForm" novalidate>
+              <ion-list>
+                <ion-item>
+                  <ion-label>Category</ion-label>
+                  <ion-select [(ngModel)]="product.category" name="category" #category="ngModel">
+                    <ion-option *ngFor="let c of all_categories" value="{{c.id}}">{{c.name}}</ion-option>
+                  </ion-select>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Nom</ion-label>
+                    <ion-textarea [(ngModel)]="product.name" name="name" #name="ngModel"></ion-textarea>
+                </ion-item>
+                
+                <ion-item>
+                    <ion-label>Prix Régulier</ion-label>
+                    <ion-textarea [(ngModel)]="product.regular_price" name="regular_price" #regular_price="ngModel"></ion-textarea>
+                </ion-item>
+                
+                <ion-item>
+                  <ion-label>Description</ion-label>
+                  <ion-textarea [(ngModel)]="product.description" name="description" #description="ngModel"></ion-textarea>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>Courte Description</ion-label>
+                    <ion-textarea [(ngModel)]="product.short_description" name="short_description" #short_description="ngModel"></ion-textarea>
+                </ion-item>
+                
+              </ion-list>
+                   
+              <ion-col>
+                <button ion-button (click)="addProduct(productForm)" type="submit" color="primary" block>Sauvegarder</button>
+              </ion-col>
+            </form>
+          </ion-content>
+          

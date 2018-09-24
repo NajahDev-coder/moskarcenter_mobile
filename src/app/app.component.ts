@@ -10,6 +10,8 @@ import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
 import { Storage } from '@ionic/storage';
 import { ProductsPage } from '../pages/products/list/products';
+import { CommandesPage } from '../pages/commandes/list/commandes';
+import { CategoriesPage } from '../pages/categories/categories';
 
 @Component({
   templateUrl: 'app.html'
@@ -55,19 +57,23 @@ export class MyApp {
     });
   }
 
-  getCategories() {
-    this.db.getCategories()
-      .subscribe(
-        data => this.categories = data,
-        err => console.log(err),
-        () => console.log('categories')
-      );
-  }
-
+ 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page);
+  }
+
+  maBoutique() {
+
+  }
+
+  mesAchats() {
+
+  }
+
+  getCategories() {
+    this.openPage(CategoriesPage);
   }
 
 
@@ -88,7 +94,7 @@ export class MyApp {
   }
 
   commandes() {
-
+    this.openPage(CommandesPage);
   }
 
   clients() {

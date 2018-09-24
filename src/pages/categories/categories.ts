@@ -3,6 +3,7 @@ import { NavController, ToastController, Events } from 'ionic-angular';
 import { DbworkProvider } from "../../providers/dbwork/dbwork";
 import { Storage } from '@ionic/storage';
 import {WoocommerceProvider} from "../../providers/woocommerce/woocommerce";
+import { ProductsPage } from '../products/list/products';
 
 @Component({
   selector: 'page-categories',
@@ -53,7 +54,7 @@ export class CategoriesPage {
   }
 
   openCategoryPage(category) {
-    console.log(category);
+    this.navCtrl.setRoot(ProductsPage, {'category': category});
   }
 
 }

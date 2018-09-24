@@ -30,19 +30,12 @@
 
 <ion-content padding>
 
-  <ion-grid>
-      <ion-row>
-        <ion-col width-33><button (click)="getCategories()" ion-button round style="background-color: #ee7c1b">Catégories</button></ion-col>
-        <ion-col width-33><button (click)="maBoutique()" ion-button round style="background-color: #ee7c1b">Ma Boutique</button></ion-col>
-        <ion-col width-33><button (click)="mesAchats()" ion-button round style="background-color: #ee7c1b">Mes Achats</button></ion-col>
-      </ion-row>
-   </ion-grid>
-
+  
 
   <ion-grid>
     <ion-row>
       <ion-slides #productSlides>
-        <ion-slide *ngFor="let product of products">
+        <ion-slide *ngFor="let product of products"  (click)="openProductPage(product)">
           <ion-card no-padding>
             <img [src]="product.images[0].src" />
             <h1 padding center> {{ product.name }} </h1>

@@ -26,9 +26,13 @@
 <ion-content padding>
 
   <ion-list>
-    <ion-row *ngFor="let product of products" >
+    <ion-item *ngFor="let product of products" (click)="openProductPage(product)">
       <h2> {{ product.name }} </h2>
-    </ion-row>
+    </ion-item>
   </ion-list>
 
+  <ion-fab right bottom>
+    <button ion-fab color="danger" (click)="addProduct()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+  
 </ion-content>

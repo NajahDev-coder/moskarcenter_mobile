@@ -1,0 +1,38 @@
+<ion-header>
+        <ion-navbar color="moskar">
+          <button ion-button menuToggle><ion-icon name="menu"></ion-icon></button>
+          <ion-title style="color:aliceblue;">
+                {{ product.name }}
+          </ion-title>
+          <ion-buttons end>
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <button (click)="notifications()" style="background-color: transparent; font-size: 20px; color: aliceblue">
+                    <ion-icon name="notifications-outline"></ion-icon>
+                  </button>
+                </ion-col>
+                <ion-col>
+                  <button (click)="basket()" style="background-color: transparent; font-size: 20px; color: aliceblue">
+                    <ion-icon name="cart"></ion-icon>
+                  </button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-buttons>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content padding>
+       <ion-row>
+            <img width="100%" [src]="product.images[0].src" />
+        </ion-row>
+        <ion-row style="text-align: center; color:goldenrod;font-weight: bold;">
+            <ion-col> {{ product.price }}</ion-col>
+            <ion-col *ngIf="product.in_stock">En stock</ion-col>
+            <ion-col *ngIf="product.in_stock == false">En Rupture De Stock</ion-col>
+        </ion-row>
+
+        <p [innerHTML]="product.description"></p>       
+      </ion-content>
+      
