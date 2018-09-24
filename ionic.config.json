@@ -9,6 +9,5 @@
       "path": "/api",
       "proxyUrl": "https://moskarcenter.com/api"
     }
-  ],
-  "app_id": ""
+  ]
 }

@@ -9,6 +9,7 @@ import { DbworkProvider } from '../providers/dbwork/dbwork';
 import { ProfilePage } from '../pages/profile/profile';
 import { RegisterPage } from '../pages/register/register';
 import { Storage } from '@ionic/storage';
+import { ProductsPage } from '../pages/products/list/products';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,6 +21,8 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
   categories: Array<{id: string}>;
+  loggedIn: boolean;
+  user: any;
 
   constructor(public platform: Platform, public storage: Storage, private db: DbworkProvider, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
     this.initializeApp();
@@ -32,6 +35,23 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      this.storage.ready().then(() => {
+        this.storage.get("userLoginInfo").then((userLoginInfo) => {
+  
+          if (userLoginInfo != null) {
+            console.log("User logged in...");
+            this.user = userLoginInfo.user;
+            this.loggedIn = true;
+          }
+          else {
+            console.log("No user found.");
+            this.user = {};
+            this.loggedIn = false;
+          }
+  
+        })
+      });
     });
   }
 
@@ -60,11 +80,11 @@ export class MyApp {
   }
 
   articles () {
-
+    console.log('articles');
   }
 
   produits() {
-
+    this.openPage(ProductsPage);
   }
 
   commandes() {
@@ -91,16 +111,10 @@ export class MyApp {
     this.openPage(ProfilePage);
   }
 
-  loggedIn() {
-    return true;
-  }
-
   logout() {
-    this.menu.close();
-    localStorage.removeItem('cookie');
-    localStorage.removeItem('ID');
-    localStorage.removeItem('nonce');
-    this.openPage(LoginPage);
-
+    this.storage.remove("userLoginInfo").then(() => {
+      this.user = {};
+      this.loggedIn = false;
+    });
   }
 }

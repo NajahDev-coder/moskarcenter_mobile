@@ -29,14 +29,18 @@
 </ion-header>
 
 <ion-content padding>
-
   <ion-list>
-    <ion-row *ngFor="let category of categories" >
-      <ion-thumbnail item-left>
-        <!--<img [src]="category.image.src" />-->
-      </ion-thumbnail>
+  <ion-card *ngFor="let category of categories">
+    <ion-item color="light" text-wrap (click)="openCategoryPage(category)" >
       <h2> {{ category.name }} </h2>
-    </ion-row>
-  </ion-list>
+      <button ion-button icon clear item-right>
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-item>
 
+    <ion-item *ngFor="let sub of category.subCategories" text-wrap (click)="openCategoryPage(sub)" menuClose>
+      <h2> {{ sub.name }} </h2>
+    </ion-item>
+  </ion-card>
+</ion-list>
 </ion-content>
