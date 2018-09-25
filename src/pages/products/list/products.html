@@ -23,8 +23,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content padding style="height: 90%;">
   <ion-list>
     <ion-item *ngFor="let product of products" (click)="openProductPage(product)">
       <h2> {{ product.name }} </h2>

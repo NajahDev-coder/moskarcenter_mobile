@@ -52,14 +52,14 @@ export class PaymentPro {
 
 
     loadBillingData() {
-        this.db.getBillingData()
-        .subscribe(
+        this.db.getBillingData();
+        /*.subscribe(
             data => {
                 this.facture = data;
             },
             err => console.log(err),
             () => console.log('loading billing data')
-        );
+        );*/
     }
 
     onSave(form) {

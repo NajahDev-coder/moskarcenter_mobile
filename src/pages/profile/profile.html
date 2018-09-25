@@ -6,11 +6,51 @@
           <ion-icon name="menu"></ion-icon>
         </button>
       </ion-navbar>
+
+
+      <ion-toolbar no-border style="padding:0px;" color="moskar" clear>
+        <ion-segment [(ngModel)]="Profil">
+          <ion-segment-button value="ValidatePro" style="color:white;" *ngIf="validpro">
+            Validez
+          </ion-segment-button>
+          <ion-segment-button value="Profil" style="color:white;">
+            Profil
+          </ion-segment-button>
+          <ion-segment-button value="Checkout" style="color:white;" *ngIf="validpro">
+            Checkout               
+          </ion-segment-button>
+          <ion-segment-button value="Bienvenue" style="color:white;">
+            Bienvenue
+        </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
 </ion-header>
 <ion-content>
-    <ion-list>
-        <form #profileForm="ngForm">
+    <div [ngSwitch]="Profil">
 
+    <ion-list *ngSwitchCase="'ValidatePro'">
+        <ion-row>
+            <ion-card>
+                <!--<img src="../assets/imgs/account.jpg"/>-->
+                <ion-card-content style="text-align: center;">
+                        <ion-card-title>
+                              Compte Professionel <br>
+                              29,00€ / 1 mois
+                        </ion-card-title>
+                    <p>
+                        Un Compte Professionel est un Compte qui regroupe tous, 
+                        le membre peut ajouter des produits sans limite et aussi peut être un 
+                        client qui passe des commandes sur MoskarCenter.
+                    </p>
+                </ion-card-content>
+            </ion-card>
+
+            <button (click)="onValidate()" ion-button style="width:88%; margin-top: 11%; margin-left:6%; text-transform: none;" color="connect" large>Valider Votre Choix</button>
+        </ion-row>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'Profil'">
+        <form #profileForm="ngForm">
             <ion-item>
                 <ion-label floating color="primary">Identifiant</ion-label>
                 <ion-input readonly="{{isReadonly}}" [(ngModel)]="profile.username" name="username" type="text" #username="ngModel" required></ion-input>
@@ -31,8 +71,7 @@
             <ion-input [(ngModel)]="profile.last_name" name="last_name" type="text" #last_name="ngModel"></ion-input>
           </ion-item>
 
-
-          <ion-item>
+          <ion-item *ngIf="isPro">
                 <ion-label floating color="primary">Mon Du Magasin</ion-label>
                 <ion-input [(ngModel)]="profile.magasin" name="magasin" type="text" #magasin="ngModel" required></ion-input>
             </ion-item>
@@ -70,20 +109,66 @@
                 <ion-input [(ngModel)]="profile.etat" name="etat" type="text" #etat="ngModel"></ion-input>
             </ion-item>
             
-            <ion-item>
+            <ion-item *ngIf="isPro">
               <ion-label floating color="primary">Téléphone de l'entreprise</ion-label>
               <ion-input [(ngModel)]="profile.phone" name="phone" type="text" #phone="ngModel" required></ion-input>
             </ion-item>
               
-            <ion-item>
+            <ion-item *ngIf="isPro">
                 <ion-label floating color="primary">SIRET</ion-label>
                 <ion-input [(ngModel)]="profile.siret" name="siret" type="text" #siret="ngModel" required></ion-input>
             </ion-item>
          
           <div>
               <button ion-button (click)="onSave(profileForm)" style="width:88%; margin-top: 11%; margin-left:6%;" color="connect" large>Confirmez</button>
-              <!--<img src="../../assets/imgs/inscription.png" style="max-width:14%;margin-left:-10%;margin-right:6%;">S'Inscrire</button>-->
           </div>
         </form>
       </ion-list>
+
+
+      <ion-list *ngSwitchCase="'Checkout'">
+            <button (click)="onCheckout()" ion-button style="width:88%; margin-top: 11%; margin-left:6%; text-transform: none;" color="connect" large>Payer</button>
+      </ion-list>
+
+      <ion-list *ngSwitchCase="'Bienvenue'">
+        <ion-card *ngIf="isPro==false">
+            <img src="../assets/imgs/account.jpg"/>
+                <ion-card-content>
+                    <ion-card-title>
+                            Compte Particulier
+                    </ion-card-title>
+                    <p>
+                        Avec un compte particulier , 
+                        le membre peut acheter et passer 
+                        des commandes sans limite sur MoskarCenter.
+                        Un compte particulier est aussi un vendeur qui
+                        peut vendre au maximum 5 produits 
+                        achetable sur MoskarCenter.
+                    </p>
+                </ion-card-content>
+        </ion-card>
+        <ion-card *ngIf="isPro==false">
+            <ion-card-content>
+                <ion-card-title>
+                    Plan gratuit !!! Il n’y a aucune option 
+                    de paiement pour cela.
+                </ion-card-title>
+                <ion-card-title>
+                Expire le: N'expire jamais
+                </ion-card-title>
+            </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="isPro">
+                <ion-card-content>
+                    <ion-card-title>
+                        Compte Professionel
+                    </ion-card-title>
+                </ion-card-content>
+        </ion-card>
+        <button ion-button style="width:88%; margin-top: 11%; margin-left:6%; text-transform: none;" color="connect" large>
+                          Améliorez Votre Abonnement</button>
+
+      </ion-list>
+      </div>
 </ion-content>

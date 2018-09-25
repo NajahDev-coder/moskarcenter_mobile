@@ -12,10 +12,8 @@ import { HttpModule } from '@angular/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DbworkProvider } from '../providers/dbwork/dbwork';
-import { ValidatePro } from '../pages/validate_pro/validatepro';
 import { ProfilePage } from '../pages/profile/profile';
 import { PaymentPro } from '../pages/payment/payment';
-import { BienvenuePage } from '../pages/bienvenue/bienvenue';
 import { PaymentModePage } from '../pages/paymentmode/paymentmode';
 import { LemonWayPaymentPage } from '../pages/lemonwaypayment/lemonwaypayments';
 import { IonicStorageModule } from '@ionic/storage';
@@ -32,10 +30,8 @@ import { AddProductPage } from '../pages/products/add/addProduct';
     HomePage,
     LoginPage,
     RegisterPage,
-    ValidatePro,
     ProfilePage,
     PaymentPro,
-    BienvenuePage,
     PaymentModePage,
     LemonWayPaymentPage,
     CategoriesPage,
@@ -55,10 +51,8 @@ import { AddProductPage } from '../pages/products/add/addProduct';
     HomePage,
     LoginPage,
     RegisterPage,
-    ValidatePro,
     ProfilePage,
     PaymentPro,
-    BienvenuePage,
     PaymentModePage,
     LemonWayPaymentPage,
     CategoriesPage,

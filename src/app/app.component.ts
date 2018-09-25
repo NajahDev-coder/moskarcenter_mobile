@@ -26,7 +26,7 @@ export class MyApp {
   loggedIn: boolean;
   user: any;
 
-  constructor(public platform: Platform, public storage: Storage, private db: DbworkProvider, public statusBar: StatusBar, public splashScreen: SplashScreen, private menu: MenuController) {
+  constructor(public platform: Platform, public storage: Storage, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     // this.getCategories();
   }
@@ -122,5 +122,6 @@ export class MyApp {
       this.user = {};
       this.loggedIn = false;
     });
+    localStorage.clear();
   }
 }

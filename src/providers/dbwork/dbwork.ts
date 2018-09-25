@@ -15,37 +15,14 @@ import { WoocommerceProvider } from "../woocommerce/woocommerce";
 @Injectable()
 export class DbworkProvider {
   apiUrl = 'https://moskarcenter.com';
-  consumerKey = "ck_dcd2ac836a21068e5c645566390a70400e2a27df";
-  consumerSecret = "cs_d65486c616067d1019eaf647667b10bfd1fe2225";
   lemonWayApi = 'https://sandbox-api.lemonway.fr/mb/lwcollect/dev/collect_json/service_json.asmx'
 
   constructor(public http: Http, public toastCtrl: ToastController, public storage: Storage, private WP: WoocommerceProvider) {
     console.log('Hello DbworkProvider Provider');
   }
 
-  public getArticles() {
-
-  }
-
-  public getProducts() {
-    return this.http.get(this.apiUrl + '/wp-json/wc/v2/products/?consumer_key='
-    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {})
-      .map(res => res.json());
-  }
-
-  public getOrders() {
-    return this.http.get(this.apiUrl + '/wp-json/wc/v2/orders/?consumer_key='
-    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {})
-      .map(res => res.json());
-  }
-
   public send_payment() {
     return this.http.get(this.lemonWayApi)
-      .map(res => res.json());
-  }
-
-  public getCategories() {
-    return this.http.get(this.apiUrl + '/wp-json/wp/v2/categories/', {})
       .map(res => res.json());
   }
 
@@ -91,63 +68,7 @@ export class DbworkProvider {
       });
     return $obs;
   }
-
-  public getBillingData(): Observable<any> {
-    let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    var $obs = this.http.get(this.apiUrl +'/wp-json/wc/v2/customers/'+ localStorage.getItem('ID') +'?consumer_key='
-    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {headers: header})
-      .map(res => {return res.json().billing;});
-    return $obs;
-  }
-
-  public getProfileData(): Observable<any> {
-    let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    var $obs = this.http.get(this.apiUrl +'/wp-json/wc/v2/customers/'+ localStorage.getItem('ID') +'?consumer_key='
-    +this.consumerKey+'&consumer_secret='+this.consumerSecret, {headers: header})
-      .map(res => {return res;});
-    return $obs;
-  }
-
-  public editProfile(profile): Observable<any> {
-    let profileData = {
-      first_name: profile.first_name,
-      last_name: profile.last_name,
-      role: 'seller',
-      billing: {
-        first_name: profile.first_name,
-        last_name: profile.last_name,
-        company: profile.magasin,
-        address_1: profile.adresse1,
-        address_2: profile.adresse2,
-        city: profile.ville,
-        state: profile.etat,
-        postcode: profile.postcode,
-        country: profile.pays,
-        email: profile.email,
-        phone: profile.phone
-      },
-      meta_data: [
-        {
-            key: "type_compte",
-            value: "Compte Proffessionel"
-        },
-        {
-          key: "siret",
-          value: profile.siret
-        }
-    ],
-    };
-    let header = new Headers();
-    header.append('Content-Type', 'application/json');
-    var $obs = this.http.put(this.apiUrl +'/wp-json/wc/v2/customers/'+ localStorage.getItem('ID') +'?consumer_key='
-    +this.consumerKey+'&consumer_secret='+this.consumerSecret, profileData, {headers: header})
-      .map(res => {return res;});
-
-    return $obs;
-  }
-
+  
   public getCountries(): Observable<any> {
     var $obs = this.http.get("https://restcountries.eu/rest/v2/all")
       .map(res => {
